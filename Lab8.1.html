@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ревин</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form>
+        <p>Калькулятор среднего арифметического.</p>
+        <p id="1"><input type="text" placeholder="Первая цифра" /></p>
+        <p id="2"><input type="text" placeholder="Вторая цифра" /></p>
+        <p id="3"><input type="text" placeholder="Третья цифра" /></p>
+        <p id="4"><input type="text" placeholder="Результат" /></p>
+        <p id="5"><input type="button" value="Вычислить" onclick="schet()" /></p>
+        
+        <div id="modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;">
+            <div style="background-color: white; padding: 15px;">
+                <h2>Вы забыли ввести число!</h2>
+                <p id="modalMessage"></p>
+                <button onclick="closeModal()">OK</button>
+            </div>
+        </div>
+        <div id="modal2" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;">
+            <div style="background-color: white; padding: 15px;">
+                <h2>Вы ввели не число!</h2>
+                <p id="modalMessage"></p>
+                <button onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        function schet() {
+            var z = document.getElementById('1').getElementsByTagName('input')[0].value;
+            var z1 = parseFloat(z);
+            var v = document.getElementById('2').getElementsByTagName('input')[0].value;
+            var v1 = parseFloat(v);
+            var o = document.getElementById('3').getElementsByTagName('input')[0].value;
+            var o1 = parseFloat(o);
+
+            function openModal() {
+                document.getElementById("modal").style.display = "block";
+            }
+            function openModal2() {
+                document.getElementById("modal2").style.display = "block";
+            }
+            if ((z == null || z == "") || (v == null || v == "") || (o == null || o == "")) {
+                openModal();
+                return false;
+            }
+            if (isNaN(z || v || o)) {
+                openModal2();
+                return false;
+            }
+            var link = document.getElementById('4').getElementsByTagName('input');
+            var otvet = z1 + v1 + o1
+
+             link[0].value = otvet / 3;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Ревин</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <p style="font-weight:bold"> Горризонтальные линии</p>
+    <p style="width:400px">Выберите значения параметров, которые требуется изменить, и нажмите кнопку <strong>Выполнить.</strong></p>
+
+    <table id="stroka" style="border: solid; background-color:blue; border-color: blue; margin-left:10px" width="200px" height="10px">
+    </table>
+    <br />
+    <table style="border:solid;float:left" width="300px" height="200px">
+        <tr><td style="float:left"><input id="0" type="radio" /></td><td style="float:left">LEFT</td></tr>
+        <tr><td style="float:left"><input id="500" type="radio" /></td><td style="float:left">CENTRE</td></tr>
+        <tr><td style="float:left"><input id="1000" type="radio" /></td><td style="float:left">RIGHT</td></tr>
+        <tr><td style="float:left"><input style="width:70px" id="1pole" type="text" /></td><td style="float:left">толщина линии(size)</td></tr>
+        <tr><td style="float:left"><input style="width:70px" id="2pole" type="text" /></td><td style="float:left">длина линии(width)</td></tr>
+
+        <tr style="float:left"><td></td><td> <input type="button" value="Выполнить" onclick="DATA()" /> </td> <td> </td><td> <input type="button" value="Обновить" onclick="DATA2()" /> </td></tr>
+    </table>
+    <table style="border:solid;float:left" width="200px" height="200px">
+        <tr><td>Цвет линии(color)</td></tr>
+
+        <tr>
+            <td>
+                <select style="margin-bottom:150px" id="selector">
+                    <option id="blue">blue</option>
+                    <option id="green">green</option>
+                    <option id="olive">olive</option>
+                    <option id="navy">navy</option>
+                    <option id="purple">purple</option>
+                    <option id="teal">teal</option>
+                    <option id="gray">gray</option>
+                    <option id="silver">silver</option>
+                    <option id="yellow">yellow</option>
+                    <option id="fuchsia">fuchsia</option>
+                    <option id="white">white</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function DATA() {
+            var z = document.getElementById('1pole').value;
+            var v = document.getElementById('2pole').value;
+            let o = document.getElementById('selector').value;
+            var strokaid = document.getElementById('stroka');
+           
+
+            strokaid.style.backgroundColor = o;
+            strokaid.style.borderColor = o;
+            strokaid.style.width = z + 'px';
+            strokaid.style.height = v + 'px';
+            strokaid.style.marginLeft = leftid + 'px';
+
+            
+            if (isNaN(z || v)) {
+                alert("В поля вводятся числовые значения!");
+                return false;
+            }
+            
+            if (document.getElementById('0').checked) {
+                var left = document.getElementById('0');
+                var leftid = left.getAttribute('id');
+                strokaid.style.marginLeft = leftid + 'px';
+                document.getElementById('0').checked = false;
+            }
+
+            if (document.getElementById('500').checked) {
+                var centre = document.getElementById('500');
+                var centreid = centre.getAttribute('id');
+                strokaid.style.marginLeft = centreid + 'px';
+                document.getElementById('500').checked = false;
+            }
+            
+            if (document.getElementById('1000').checked) {
+                var right = document.getElementById('1000');
+                var rightid = right.getAttribute('id');
+                strokaid.style.marginLeft = rightid + 'px';
+                document.getElementById('1000').checked = false;                
+            }
+           
+        }
+        function DATA2() {
+            var strokaid2 = document.getElementById('stroka');
+            var prd = document.getElementById('blue').value;
+
+            strokaid2.style.backgroundColor = "blue";
+            strokaid2.style.borderColor = "blue";
+            strokaid2.style.width = 200 + 'px';
+            strokaid2.style.height = 10 + 'px';
+            strokaid2.style.marginLeft = 10 + 'px';
+            document.getElementById('1pole').value = null;
+            document.getElementById('2pole').value = null;
+            document.getElementById('selector').value = prd;
+        }
+    </script>
+</body>
+</html>
